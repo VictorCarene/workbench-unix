@@ -14,12 +14,19 @@ function check_guess {
 
 }
 
-files_count=$(ls | wc -l)
+#all files include hidden files
+files_count=$(find . -maxdepth 1 -type f -exec echo basename {} \; | wc -l)
 #echo $files_count
 
 while [[ $files_count -ne $attempt ]]
 do
-  read -p "Input guess=" attempt
-  echo $(check_guess $attempt $files_count)
-  echo ""
+  read -r -p "Input guess: " attempt
+  if [[ $attempt =~ ^[0-9]+$ ]]
+  then
+    check_guess $attempt $files_count
+    echo ""
+  else
+    echo "Input Only Digital"
+    attempt=-1
+  fi
 done
