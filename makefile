@@ -5,5 +5,6 @@ readme:
 	echo "" >> README.md
 	echo -n "> README.md was created: " >> README.md
 	date >> README.md
+	echo "\n" >> README.md
 	echo -n "> The number of lines of code contained in guessinggame.sh: " >> README.md
 	wc -l < ./guessinggame.sh >> README.md
